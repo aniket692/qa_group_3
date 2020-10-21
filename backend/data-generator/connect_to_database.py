@@ -10,7 +10,6 @@ mycursor = mydb.cursor()
 mycursor.execute("SELECT * FROM db_grad_cs_1917.users;")
 
 myresult = mycursor.fetchall()
-
 for x in myresult:
   print(x)
 
