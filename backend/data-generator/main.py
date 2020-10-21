@@ -1,6 +1,7 @@
 from flask import Flask, Response
 from flask_cors import CORS
 import webServiceStream
+from connect_to_database import connect_to_database
 from RandomDealData import *
 
 app = Flask(__name__)
@@ -18,6 +19,12 @@ def testservice():
 @app.route('/streamTest')
 def stream():
     return webServiceStream.stream()
+
+@app.route('/connect2db')
+def connect2db():
+    check = connect_to_database()
+    data = check.db_check()
+    return Response(data, status=200, mimetype='application/json')
 
 @app.route('/streamTest/sse')
 def sse_stream():
