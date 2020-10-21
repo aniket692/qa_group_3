@@ -6,9 +6,7 @@ mydb = mysql.connector.connect(
   password="ppp",
   database="db_grad_cs_1917"
 )
-
 mycursor = mydb.cursor()
-
 mycursor.execute("SELECT * FROM db_grad_cs_1917.users;")
 
 myresult = mycursor.fetchall()
