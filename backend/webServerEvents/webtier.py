@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from flask_sse import sse
 from flask_cors import CORS
 import requests
@@ -33,10 +33,12 @@ def db_connection():
     r = requests.get('http://localhost:8080/connect2db', stream=True)
     return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-    login_details = {"username":"alison","password":"gradprog2016@07"}
-    print("test")
+    # login_details = {"username":"alison","password":"gradprog2016@07"}
+        # print("test")
+    login_details = request.json
+    print(login_details)
     r = requests.post('http://localhost:8080/login_check',data=login_details,stream=True)
     return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
 
@@ -47,7 +49,7 @@ def get_message():
     return s
 
 def bootapp():
-    app.run(port=8090, threaded=True, host=('0.0.0.0'))
+    app.run(debug=True, port=8090, threaded=True, host=('0.0.0.0'))
 
 if __name__ == '__main__':
      bootapp()

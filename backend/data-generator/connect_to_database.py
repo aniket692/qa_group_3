@@ -11,13 +11,14 @@ class connect_to_database:
         database="db_grad_cs_1917"
       )
       if my_db.is_connected():
-        message = "connected to DB"
+        message = "Connected to DB"
     except mysql.connector.Error as e:
       message = e
 
 
     #myresult = mycursor.fetchall()
-    data = '{"Message" = "'+message+'"}'
+    # data = '{"Message" = "'+message+'"}'
+    data = message
     return data
     #for x in myresult:
     #  print(x)
@@ -35,9 +36,9 @@ class connect_to_database:
     row_count=mycursor.fetchone()
     if row_count != None:
       #rs = mycursor.fetchall()
-      message = '{"code" = "200"}'
+      message = '200'
     else:
-      message = '{"code"="404"}'
+      message = '404'
 
     #myresult = mycursor.fetchall()
     #print(myresult)
