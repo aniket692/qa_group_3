@@ -11,13 +11,14 @@ class connect_to_database:
         database="db_grad_cs_1917"
       )
       if my_db.is_connected():
-        message = "connected to DB"
+        message = "Connected to DB"
     except mysql.connector.Error as e:
       message = e
 
 
     #myresult = mycursor.fetchall()
-    data = '{"Message" = "'+message+'"}'
+    # data = '{"Message" = "'+message+'"}'
+    data = message
     return data
     #for x in myresult:
     #  print(x)

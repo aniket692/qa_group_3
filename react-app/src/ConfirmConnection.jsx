@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-const ConfirmConnection = () => {
+const ConfirmConnection = (props) => {
 
-    //let update =  axios.put("http://localhost:8090", "1");
-    let response =  axios.get("https://localhost:8090");
+    const [connection, setConnection] = useState('Checking...')
 
+    axios.get("http://127.0.0.1:8090/db_connection")
+                        .then((response) => {
+                            setConnection(response.data)
+                            });
+   
+            
     return (
-    <h1>Connection is </h1>
+    <h1>Connection status: {connection} </h1>
     )
 }; 
 
