@@ -5,7 +5,7 @@ import numpy, random
 from datetime import datetime, timedelta
 import json
 from RandomDealData import *
-
+from connect_to_database import connect_to_database
 app = Flask(__name__)
 CORS(app)
 
@@ -24,6 +24,20 @@ def stream():
         while True:
             #nonlocal instrList
             yield rdd.createRandomData(instrList) + "\n"
+    return Response(eventStream(), status=200, mimetype="text/event-stream")
+
+def stream_store():
+    rdd = RandomDealData()
+    instrList = rdd.createInstrumentList()
+    def eventStream():
+        count =0
+        while (count <2):
+            #nonlocal instrList
+            random_data = rdd.createRandomData(instrList)
+            yield  random_data + "\n"
+            count = count + 1
+            check = connect_to_database()
+            data = check.db_store(random_data)
     return Response(eventStream(), status=200, mimetype="text/event-stream")
 
 def sse_stream():

@@ -20,6 +20,10 @@ def testservice():
 def stream():
     return webServiceStream.stream()
 
+@app.route('/streamStore')
+def stream_store():
+    return webServiceStream.stream_store()
+
 @app.route('/connect2db')
 def connect2db():
     check = connect_to_database()
