@@ -13,7 +13,7 @@ class connect_to_database:
       if my_db.is_connected():
         message = "connected to DB"
     except mysql.connector.Error as e:
-      message = e
+      message = str(e)
 
 
     #myresult = mycursor.fetchall()
