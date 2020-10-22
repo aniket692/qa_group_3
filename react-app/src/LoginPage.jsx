@@ -15,14 +15,15 @@ export default function Login() {
   }
 
 
-  function handleSubmit(event) { 
-    axios.post("http://127.0.0.1/login", {
+  function handleSubmit(event) {
+    event.preventDefault()
+    axios.post("http://127.0.0.1:8090/login", {
         user,
         password
     }).then(result => {
         if (result.status === 200) {
             setAuth(true);
-            console.log('200')
+            alert('Login successful!')
         }
     }).catch(e => {
         alert('Incorrect Username or Password, please try again')
@@ -31,7 +32,7 @@ export default function Login() {
   }
   return (
     <div className="Login">
-      <form onSubmit={handleSubmit}>
+      {!isAuth && <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
           <ControlLabel>Username</ControlLabel>
           <FormControl
@@ -53,7 +54,7 @@ export default function Login() {
           Login
         </Button>
         
-      </form>
+      </form>}
     </div>
   );
 }

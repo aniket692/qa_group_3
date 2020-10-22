@@ -8,6 +8,10 @@ app = Flask(__name__)
 #app.register_blueprint(sse, url_prefix='/stream')
 CORS(app)
 
+@app.route('/login', methods=["POST", "GET"])
+def login():
+    return "Success", 200
+
 @app.route('/deals')
 def forwardStream():
     r = requests.get('http://localhost:8080/streamTest', stream=True)
