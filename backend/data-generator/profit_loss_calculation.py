@@ -33,7 +33,6 @@ class profit_loss:
 
 
 if __name__ == "__main__":
-    profit_loss_table = profit_loss()
-    myresult = json.dumps(profit_loss_table.calculacte_profit_loss())
-    print(myresult)
-    print(type(myresult))
+    total_profit_loss = profit_loss()
+    total_profit_loss_json = json.dumps(total_profit_loss.calculacte_profit_loss())
+    print(total_profit_loss_json)
