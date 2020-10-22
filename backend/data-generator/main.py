@@ -31,7 +31,7 @@ def login_check():
     if request.method == 'POST':
         # Fetch form data
         userDetails = request.form
-        username = userDetails['username']
+        username = userDetails['user']
         password = userDetails['password']
         #print(username)
         #print("password",password)

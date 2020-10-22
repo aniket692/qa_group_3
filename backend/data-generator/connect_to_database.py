@@ -36,9 +36,9 @@ class connect_to_database:
     row_count=mycursor.fetchone()
     if row_count != None:
       #rs = mycursor.fetchall()
-      message = '{"code" = "200"}'
+      message = '200'
     else:
-      message = '{"code"="404"}'
+      message = '404'
 
     #myresult = mycursor.fetchall()
     #print(myresult)

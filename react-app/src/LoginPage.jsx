@@ -18,12 +18,15 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault()
     axios.post("http://127.0.0.1:8090/login", {
-        user,
-        password
+        'user': user,
+        'password': password 
     }).then(result => {
-        if (result.status === 200) {
+        console.log(result)
+        if (result.data === 200) {
             setAuth(true);
             alert('Login successful!')
+        } else{
+            alert('Incorrect Username or Password, please try again')
         }
     }).catch(e => {
         alert('Incorrect Username or Password, please try again')
