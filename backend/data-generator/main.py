@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from flask_cors import CORS
 import webServiceStream
 from connect_to_database import connect_to_database
@@ -25,6 +25,26 @@ def connect2db():
     check = connect_to_database()
     data = check.db_check()
     return Response(data, status=200, mimetype='application/json')
+
+@app.route('/login_check', methods=['GET', 'POST'])
+def login_check():
+    if request.method == 'POST':
+        # Fetch form data
+        userDetails = request.form
+        username = userDetails['username']
+        password = userDetails['password']
+        #print(username)
+        #print("password",password)
+        check = connect_to_database()
+        data = check.db_login_check(username,password)
+        #cur = mysql.connection.cursor()
+        #cur.execute("INSERT INTO users(name, email) VALUES(%s, %s)", (name, email))
+        #mysql.connection.commit()
+        #cur.close()
+        return Response(data, status=200, mimetype='application/json')
+    else:
+        return Response({'"message":no data'}, status=200, mimetype='application/json')
+
 
 @app.route('/streamTest/sse')
 def sse_stream():

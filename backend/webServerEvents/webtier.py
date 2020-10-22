@@ -37,6 +37,13 @@ def db_connection():
     r = requests.get('http://localhost:8080/connect2db', stream=True)
     return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
 
+@app.route('/login')
+def login():
+    login_details = {"username":"alison","password":"gradprog2016@07"}
+    print("test")
+    r = requests.post('http://localhost:8080/login_check',data=login_details,stream=True)
+    return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
+
 def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(1.0)
