@@ -28,6 +28,11 @@ def index():
     return "webtier service points are running..."
 
 
+@app.route('/db_connection')
+def db_connection():
+    r = requests.get('http://localhost:8080/connect2db', stream=True)
+    return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
+
 def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(1.0)
