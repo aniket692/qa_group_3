@@ -1,7 +1,7 @@
 import mysql.connector
 import json
 import datetime
-class connect_to_database:
+class average_class:
   def average(self, deal_type, deal_instrument_id, start_time, end_time):
     my_db = None
     try:
@@ -25,14 +25,15 @@ class connect_to_database:
     cursor.close();
     my_db.close();
 
-  def averagebuysell(self, deal_instrument_id, start_time, end_time):
-    return average(True, "B", deal_instrument_id, start_time, end_time) + average(True, "S", deal_instrument_id, start_time, end_time)
+#  def averagebuysell(self, deal_instrument_id, start_time, end_time):
+ #   av = average_class()
+  #  return (av.average(True, "B", deal_instrument_id, start_time, end_time) + av.average(True, "S", deal_instrument_id, start_time, end_time))
 
 
   if __name__=='__main__':
     avg_s = average(True, "S", 1002,  '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
     avg_b = average(True, "B", 1002, '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
-    averagebuysell(True, 1002, '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
+    #averagebuysell(True, 1002, '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
     # print("avgbs ",                )
     print(avg_s, avg_b)
 
