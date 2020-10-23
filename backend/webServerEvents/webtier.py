@@ -50,7 +50,6 @@ def dealer_data():
     print(login_details)
     r = requests.get('http://localhost:8080/profile_details',data=login_details,stream=True)
     return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
-
 def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(1.0)
