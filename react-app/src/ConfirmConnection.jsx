@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const ConfirmConnection = (props) => {
 
+
     const [connection, setConnection] = useState('Checking...')
 
     axios.get("http://127.0.0.1:8090/db_connection")

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import "./Login.css";
+import HistoricalData from './HistoricalData';
 
 export default function Login() {
 
@@ -58,6 +59,7 @@ export default function Login() {
         </Button>
         
       </form>}
+      {isAuth && <HistoricalData user={user}/>}
     </div>
   );
 }
