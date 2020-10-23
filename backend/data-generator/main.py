@@ -3,6 +3,9 @@ from flask_cors import CORS
 import webServiceStream
 from connect_to_database import connect_to_database
 from RandomDealData import *
+from average import average_class
+from endposition import endposition
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -35,6 +38,26 @@ def historic_data():
     check = connect_to_database()
     data = check.get_historic()
     return Response(data, status=200, mimetype='application/json')
+
+@app.route('/profile_details')
+def profile_details():
+    # Fetch form data
+    #userDetails = request.form
+    #user = userDetails['user']
+    #instrument = userDetails['instrument']
+    #start = userDetails['startPeriod']
+    #end = userDetails['endPeriod']
+    avg_class = average_class()
+    avg_s = avg_class.average("S", 1002, '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
+    avg_b = avg_class.average("B", 1002, '2017-07-28T18:00:00.955', '2017-07-28T18:10:29.955')
+    total_endposition = endposition()
+    test = total_endposition.calculate_endposition()
+    #total_endposition_json = json.dumps(total_endposition.calculate_endposition())
+    #endposition_var = total_endposition_json[0]
+    #print(end)
+    data_set = {"average_sell": [str(avg_s)], "average_buy": [str(avg_b)], "endposition":[test[0]['endposition']]}
+    json_dump = json.dumps(data_set)
+    return Response(json_dump, status=200, mimetype='application/json')
 
 @app.route('/login_check', methods=['GET', 'POST'])
 def login_check():

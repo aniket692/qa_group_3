@@ -42,6 +42,15 @@ def login():
     r = requests.post('http://localhost:8080/login_check',data=login_details,stream=True)
     return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
 
+@app.route('/dealerdata', methods=['GET','POST'])
+def dealer_data():
+    login_details = {"user":"selvyn","instrument":"Astronomica","startPeriod":"2017-07-28T17:00:00.955","endPeriod":"2017-07-28T18:00:00.955"}
+    print("test")
+    login_details = request.json
+    print(login_details)
+    r = requests.get('http://localhost:8080/profile_details',data=login_details,stream=True)
+    return Response(r.iter_lines(chunk_size=1), mimetype="text/json")
+
 def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(1.0)
