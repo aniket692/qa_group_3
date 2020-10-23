@@ -31,7 +31,7 @@ def stream_store():
     instrList = rdd.createInstrumentList()
     def eventStream():
         count =0
-        while (count <2):
+        while (count <10):
             #nonlocal instrList
             random_data = rdd.createRandomData(instrList)
             yield  random_data + "\n"

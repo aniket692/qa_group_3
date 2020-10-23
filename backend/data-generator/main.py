@@ -30,6 +30,12 @@ def connect2db():
     data = check.db_check()
     return Response(data, status=200, mimetype='application/json')
 
+@app.route('/historic_data')
+def historic_data():
+    check = connect_to_database()
+    data = check.get_historic()
+    return Response(data, status=200, mimetype='application/json')
+
 @app.route('/login_check', methods=['GET', 'POST'])
 def login_check():
     if request.method == 'POST':
