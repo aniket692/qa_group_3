@@ -16,16 +16,18 @@ export default function HistoricalData(props){
   const [realised, setRealised] = useState('Checking...')
   const [effective, setEffective] = useState('Checking...')
 
-  axios.get("http://127.0.0.1:8090/dealerdata")
-                          .then((response) => {
-                            console.log(response)
-                          })
+  axios.post("http://127.0.0.1:8090/dealerdata"), {
+    'user': user
+  } .then((response) => {
+          console.log(response)
+          })
 
 
 
   function handleSubmit(event) {
     event.preventDefault()
     axios.post("http://127.0.0.1:8090/instrument", {
+      'user': user,
       'instrument': instrument,
       'startPeriod': startPeriod,
       'endPeriod': endPeriod
