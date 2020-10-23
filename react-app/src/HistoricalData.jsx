@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { Button} from "react-bootstrap";
+import StreamedData from "./StreamedData";
 
 export default function HistoricalData(props){
 
@@ -16,9 +17,9 @@ export default function HistoricalData(props){
   const [realised, setRealised] = useState('Checking...')
   const [effective, setEffective] = useState('Checking...')
 
-  axios.post("http://127.0.0.1:8090/dealerdata"), {
-    'user': user
-  } .then((response) => {
+  axios.post("http://127.0.0.1:8090/dealerdata", {
+    'user': user})
+    .then((response) => {
           console.log(response)
           })
 
@@ -74,6 +75,8 @@ export default function HistoricalData(props){
   <p> Average end price in the period: {averageSell} </p>
   </div>
 }
+
+  <StreamedData />
   
 </div>
 
